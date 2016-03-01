@@ -1,3 +1,4 @@
 [submodule "atom.symlink"]
 	path = atom.symlink
-	url = git@github.com:amauragis/dot-atom.git
+  url = git@github.com:amauragis/dot-atom.git
+  branch = master
