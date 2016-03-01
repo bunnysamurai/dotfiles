@@ -2,3 +2,66 @@ syntax on
 
 " Wrap gitcommit file types at the appropriate length
 filetype indent plugin on
+
+set lines=42 columns=80
+
+
+
+"Smart Search
+set ignorecase
+set smartcase
+set incsearch
+
+" fix tabs
+set smarttab
+set autoindent
+:set tabstop=2
+:set shiftwidth=2
+:set expandtab
+:set softtabstop=2
+:set nobackup
+
+"This will delete extra spaces at the end of a line and will
+"change tabs to spaces
+map <F6> :retab<cr>:%s/\s\+$//<cr>
+map! <F6> <Esc>:retab<cr>:%s/\s\+$//<cr>a
+
+"Enable Hexedit mode
+nnoremap <F8> :Hexmode<cr>
+inoremap <F8> <Esc>:Hexmode<cr>
+
+"Function for Hexedit mode
+command -bar Hexmode call ToggleHex()
+function ToggleHex()
+    if !exists("b:editHex") || !b:editHex
+        "Go to hex view
+        let b:editHex=1
+        %!xxd
+    else
+        "Go to text view
+        let b:editHex=0
+        %!xxd -r
+    endif
+endfunction
+
+"The first time you press home got to the begining of the text
+"The second time go to the begining of the line
+function! SmartHome()
+  let s:col = col(".")
+  normal! ^
+  if s:col == col(".")
+    normal! 0
+  endif
+endfunction
+nnoremap <silent> <Home> :call SmartHome()<CR>
+inoremap <silent> <Home> <C-O>:call SmartHome()<CR>
+
+"Turn off the darn comment continuing
+"Note: This line won't be effective since it is overwritten by ftplugins
+"   to overwrite them, put this line into a user
+"   vimfiles/after/ftplugins/c.vim file
+set formatoptions-=r
+
+"F2 now toggles the show line numbers
+map <F2> :set invnumber<cr>a
+map! <F2> <Esc>:set invnumber<cr>
