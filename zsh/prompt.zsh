@@ -1,4 +1,4 @@
-autoload colors && colors
+autoload -U colors && colors
 # cheers, @ehrenmurdick
 # http://github.com/ehrenmurdick/config/blob/master/zsh/prompt.zsh
 
@@ -71,13 +71,13 @@ directory_name() {
   echo "%{$fg_bold[cyan]%}%1/%\/%{$reset_color%}"
 }
 
-host_name() {
-  echo "%{$fg_bold[blue]%}%m%{$reset_color%}"
+userathost() {
+  echo "%{$fg_bold[blue]%}%n@%m%{$reset_color%}"
 }
 
-export PROMPT=$'\n$(host_name) in $(directory_name) $(git_dirty)$(need_push)\n› '
+export PROMPT=$'\n$(userathost) in $(directory_name) $(git_dirty)$(need_push)\n› '
 set_prompt () {
-  export RPROMPT="%{$fg_bold[cyan]%}%?%{$reset_color%}"
+  export RPROMPT="%{$fg_bold[black]%}%T%{$reset_color%} %{$fg_bold[cyan]%}[%?]%{$reset_color%}"
 }
 
 precmd() {
