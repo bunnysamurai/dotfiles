@@ -1,0 +1,15 @@
+# terminal color
+set -g default-terminal "screen-256color"
+
+# status bar
+set -g status off
+
+# fix command prefix
+unbind C-b
+set-option -g prefix C-a
+
+# Rather than constraining window size to the maximum size of any client 
+# connected to the *session*, constrain window size to the maximum size of any 
+# client connected to *that window*. Much more reasonable.
+setw -g aggressive-resize on
+
