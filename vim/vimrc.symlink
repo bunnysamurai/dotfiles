@@ -35,6 +35,20 @@ set softtabstop=2
 " backups are dumb
 set nobackup
 
+
+" Return to most recent line when reopening a file
+autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"zz" | endif
+
+" show bottom bar
+set laststatus=2
+set ruler
+set showcmd
+
+"airline
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#hunks#enabled = 0
+let g:airline_powerline_fonts = 1
+
 "Function for Hexedit mode
 command -bar Hexmode call ToggleHex()
 function ToggleHex()
@@ -60,14 +74,6 @@ function! SmartHome()
 endfunction
 nnoremap <silent> <Home> :call SmartHome()<CR>
 inoremap <silent> <Home> <C-O>:call SmartHome()<CR>
-
-" Return to most recent line when reopening a file
-autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"zz" | endif
-
-" show bottom bar
-set laststatus=2
-set ruler
-set showcmd
 
 "F2 now toggles the show line numbers
 map <F2> :set invnumber<cr>a
