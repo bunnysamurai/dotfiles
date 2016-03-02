@@ -1,34 +1,39 @@
-syntax on
+" Pathogen
+execute pathogen#infect()
+filetype plugin indent on
 
-" Wrap gitcommit file types at the appropriate length
-filetype indent plugin on
+" ditch vi stuff
+set nocompatible
 
-"set lines=42 columns=100
+" get some mouse action
+set mouse=a
 
+" cursor keys should linewrap
+set whichwrap+=<,>,h,l,[,]
 
+" color crap
+syntax enable
+set background=dark
+set t_Co=16
+let g:solarized_termcolors=256
+colorscheme solarized
 
 "Smart Search
 set ignorecase
 set smartcase
 set incsearch
+set hlsearch
 
 " fix tabs
 set smarttab
 set autoindent
-:set tabstop=2
-:set shiftwidth=2
-:set expandtab
-:set softtabstop=2
-:set nobackup
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set softtabstop=2
 
-"This will delete extra spaces at the end of a line and will
-"change tabs to spaces
-map <F6> :retab<cr>:%s/\s\+$//<cr>
-map! <F6> <Esc>:retab<cr>:%s/\s\+$//<cr>a
-
-"Enable Hexedit mode
-nnoremap <F8> :Hexmode<cr>
-inoremap <F8> <Esc>:Hexmode<cr>
+" backups are dumb
+set nobackup
 
 "Function for Hexedit mode
 command -bar Hexmode call ToggleHex()
@@ -56,12 +61,28 @@ endfunction
 nnoremap <silent> <Home> :call SmartHome()<CR>
 inoremap <silent> <Home> <C-O>:call SmartHome()<CR>
 
-"Turn off the darn comment continuing
-"Note: This line won't be effective since it is overwritten by ftplugins
-"   to overwrite them, put this line into a user
-"   vimfiles/after/ftplugins/c.vim file
-set formatoptions-=r
+" Return to most recent line when reopening a file
+autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"zz" | endif
+
+" show bottom bar
+set laststatus=2
+set ruler
+set showcmd
 
 "F2 now toggles the show line numbers
 map <F2> :set invnumber<cr>a
 map! <F2> <Esc>:set invnumber<cr>
+
+"F4 removes ^M
+map <F4> :set fileformat=unix<cr>
+map! <F4> <Esc> :set fileformat=unix<cr>a
+
+"This will delete extra spaces at the end of a line and will
+"change tabs to spaces
+map <F6> :retab<cr>:%s/\s\+$//<cr>
+map! <F6> <Esc>:retab<cr>:%s/\s\+$//<cr>a
+
+"Enable Hexedit mode
+nnoremap <F8> :Hexmode<cr>
+inoremap <F8> <Esc>:Hexmode<cr>a
+
