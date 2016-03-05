@@ -14,7 +14,7 @@ set whichwrap+=<,>,h,l,[,]
 " color crap
 syntax enable
 set background=dark
-set t_Co=16
+set t_Co=256
 let g:solarized_termcolors=256
 colorscheme solarized
 
@@ -47,7 +47,7 @@ set showcmd
 "airline
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#hunks#enabled = 0
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 
 "Function for Hexedit mode
 command -bar Hexmode call ToggleHex()
