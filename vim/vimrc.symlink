@@ -11,6 +11,9 @@ set mouse=a
 " cursor keys should linewrap
 set whichwrap+=<,>,h,l,[,]
 
+" set the leader to ',' where it belongs
+let mapleader = ","
+
 " color crap
 syntax enable
 set background=dark
