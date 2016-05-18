@@ -22,6 +22,9 @@ set mouse=a
 " cursor keys should linewrap
 set whichwrap+=<,>,h,l,[,]
 
+" backspace fixing
+set backspace=indent,eol,start
+
 " set the leader to ',' where it belongs
 let mapleader = ","
 
@@ -58,8 +61,9 @@ set showcmd
 
 "airline
 let g:airline#extensions#whitespace#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#hunks#enabled = 0
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 
 "Function for Hexedit mode
 command -bar Hexmode call ToggleHex()
