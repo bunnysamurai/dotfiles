@@ -1,9 +1,20 @@
-" Pathogen
-execute pathogen#infect()
-filetype plugin indent on
-
-" ditch vi stuff
+" Set up vundle
 set nocompatible
+filetype off
+set rtp+=$HOME/.vim/bundle/Vundle.vim
+call vundle#begin()
+" Install packages here
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'tpope/vim-sleuth'
+Plugin 'tpope/vim-fugitive'
+Plugin 'crusoexia/vim-monokai'
+
+call vundle#end()
+
+filetype plugin indent on
 
 " get some mouse action
 set mouse=a
@@ -17,9 +28,7 @@ let mapleader = ","
 " color crap
 syntax enable
 set background=dark
-set t_Co=256
-let g:solarized_termcolors=256
-colorscheme solarized
+colorscheme monokai
 
 "Smart Search
 set ignorecase
@@ -48,9 +57,9 @@ set ruler
 set showcmd
 
 "airline
-let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#whitespace#enabled = 1
 let g:airline#extensions#hunks#enabled = 0
-let g:airline_powerline_fonts = 0
+let g:airline_powerline_fonts = 1
 
 "Function for Hexedit mode
 command -bar Hexmode call ToggleHex()

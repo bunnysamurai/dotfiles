@@ -2,26 +2,6 @@
 	path = atom.symlink
   url = git@github.com:amauragis/dot-atom.git
   branch = master
-[submodule "vim/vim.symlink/bundle/vim-colors-solarized"]
-	path = vim/vim.symlink/bundle/vim-colors-solarized
-	url = git@github.com:altercation/vim-colors-solarized.git
-	branch = master
-[submodule "vim/vim.symlink/bundle/vim-airline"]
-	path = vim/vim.symlink/bundle/vim-airline
-	url = https://github.com/vim-airline/vim-airline
-	branch = master
-[submodule "vim/vim.symlink/bundle/vim-airline-themes"]
-	path = vim/vim.symlink/bundle/vim-airline-themes
-	url = https://github.com/vim-airline/vim-airline-themes
-	branch = master
-[submodule "vim/vim.symlink/bundle/vim-go"]
-	path = vim/vim.symlink/bundle/vim-go
-	url = https://github.com/fatih/vim-go.git
-	branch = master
-[submodule "vim/vim.symlink/bundle/vim-sleuth"]
-	path = vim/vim.symlink/bundle/vim-sleuth
-	url = git://github.com/tpope/vim-sleuth.git
-	branch = master
-[submodule "vim/vim.symlink/bundle/nerdcommenter"]
-	path = vim/vim.symlink/bundle/nerdcommenter
-	url = https://github.com/scrooloose/nerdcommenter.git
+[submodule "vim/vim.symlink/bundle/Vundle.vim"]
+	path = vim/vim.symlink/bundle/Vundle.vim
+	url = https://github.com/VundleVim/Vundle.vim.git
