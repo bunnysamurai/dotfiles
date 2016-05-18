@@ -6,7 +6,7 @@ set -e
 
 # use -iru to search directories ack usually ignores (like .git)
 if [ -x /usr/bin/ag ]; then
-    ag -i $1 $2
+    ag -i "$@"
 else
-    grep -ir $1 $2
+    grep -ir "$@"
 fi
