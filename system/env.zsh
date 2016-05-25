@@ -1,5 +1,5 @@
 if type atom > /dev/null; then
-  export EDITOR='atom'
-else
-  export EDITOR='vim'
+  export XEDITOR='atom'
 fi
+export VISUAL='vim'
+export EDITOR='vim'
