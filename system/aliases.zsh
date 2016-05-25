@@ -8,7 +8,8 @@ if $(gls &>/dev/null); then
   alias la='gls -A --color'
 fi
 
-if [ !$(pbcopy &>/dev/null) ]; then
+if [ !$(pbcopy </dev/null &>/dev/null) ]; then
   alias pbcopy='xclip -selection clipboard'
   alias pbpaste='xclip -selection clipboard -o'
 fi
+
