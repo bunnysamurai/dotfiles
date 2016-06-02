@@ -11,12 +11,16 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-sleuth'
 Plugin 'tpope/vim-fugitive'
 Plugin 'crusoexia/vim-monokai'
+Plugin 'freitass/todo.txt-vim'
 
 call vundle#end()
-
 filetype plugin indent on
 
-" get some mouse action
+" set the leader to ',' where it belongs
+let mapleader=","
+let maplocalleader="\\"
+
+"get some mouse action
 set mouse=a
 
 " cursor keys should linewrap
@@ -25,31 +29,53 @@ set whichwrap+=<,>,h,l,[,]
 " backspace fixing
 set backspace=indent,eol,start
 
-" set the leader to ',' where it belongs
-let mapleader = ","
-
 " color crap
 syntax enable
 set background=dark
 colorscheme monokai
 
 "Smart Search
+nnoremap / /\v
+vnoremap / /\v
 set ignorecase
 set smartcase
 set incsearch
 set hlsearch
+" clear search buffer with leaderspace
+nnoremap <leader><space> :nohlsearch<CR>
 
 " fix tabs
 set smarttab
 set autoindent
+set copyindent
 set tabstop=2
 set shiftwidth=2
 set expandtab
 set softtabstop=2
 
+" fix dumb comment thing
+autocmd FileType * setlocal formatoptions-=t formatoptions-=r formatoptions-=o
+
+" show matching parens
+set showmatch
+
+" allow opening of a new buffer without saving
+set hidden
+
 " backups are dumb
 set nobackup
 
+" Turn on automatic rereading of files
+set autoread
+
+" stop beeping
+set visualbell
+set noerrorbells
+
+" stop hitting f1 holy crap
+inoremap <F1> <ESC>
+nnoremap <F1> <ESC>
+vnoremap <F1> <ESC>
 
 " Return to most recent line when reopening a file
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"zz" | endif
@@ -108,3 +134,18 @@ map! <F6> <Esc>:retab<cr>:%s/\s\+$//<cr>a
 nnoremap <F8> :Hexmode<cr>
 inoremap <F8> <Esc>:Hexmode<cr>a
 
+"Buffer moving commands, but less typing
+" new buffer
+nmap <leader>T :enew<cr>
+
+" move to next buffer
+nmap <leader>l :bnext<cr>
+
+" previous buffer
+nmap <leader>h :bprevious<cr>
+
+"close buffer and move to previous
+nmap <leader>bq :bp <BAR> bd #<cr>
+
+" show all open buffers
+nmap <leader>bl :ls<cr>
