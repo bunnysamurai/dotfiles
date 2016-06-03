@@ -65,6 +65,9 @@ set hidden
 " backups are dumb
 set nobackup
 
+" put all the swap files in one spot
+set directory=$HOME/.vimswap//
+
 " Turn on automatic rereading of files
 set autoread
 
