@@ -1,3 +1,8 @@
+# move the base index to 1.  While in principle, I'm opposed to 1-indexing
+# I have to concede that C-a 1 is way way way easier to reach than C-a 0.
+# Sorry.
+set -g base-index 1
+
 # terminal color
 set -g default-terminal "screen-256color"
 
@@ -5,7 +10,6 @@ set -g default-terminal "screen-256color"
 unbind C-b
 set-option -g prefix C-a
 bind-key C-a send-prefix
-
 
 # Rather than constraining window size to the maximum size of any client
 # connected to the *session*, constrain window size to the maximum size of any
