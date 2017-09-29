@@ -120,7 +120,7 @@ then
 
 fi # [[ -z "$DEBIAN_PREVENT_KEYBOARD_CHANGES" ]] && [[ "$TERM" != 'emacs' ]]
 
-
+bindkey -e
 
 bindkey '^[^[[D' backward-word
 bindkey '^[^[[C' forward-word
@@ -153,3 +153,4 @@ bindkey -s "^[OR" "*"
 bindkey -s "^[OS" "-"
 bindkey -s "^[Ol" "+"
 #END Keypad
+
