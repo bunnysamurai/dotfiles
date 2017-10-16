@@ -151,3 +151,7 @@ nmap <leader>bq :bp <BAR> bd #<cr>
 
 " show all open buffers
 nmap <leader>bl :ls<cr>
+
+" Allow saving of root files when I forget to sudo vim
+cmap w!! w !sudo tee > /dev/null %
+
