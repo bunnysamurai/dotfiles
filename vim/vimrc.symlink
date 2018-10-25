@@ -11,6 +11,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-sleuth'
 Plugin 'tpope/vim-fugitive'
 Plugin 'crusoexia/vim-monokai'
+Plugin 'dag/vim-fish'
 
 call vundle#end()
 filetype plugin indent on
