@@ -1,13 +1,9 @@
-# Aliases
+# pull in aliases and environment
+source $HOME/.config/fish/env.fish
 source $HOME/.config/fish/aliases.fish
 
-# Editor stuff
-set -gx EDITOR 'vim'
-set -gx VISUAL 'vim'
-
-# Special snowflake variables
-set -gx PROJECTS "$HOME/projects"
-set -gx DOTFILES "$HOME/.dotfiles"
+# clear greeting
+set -g fish_greeting
 
 # Path modifications
 set -g fish_user_paths $HOME/bin $DOTFILES/bin
