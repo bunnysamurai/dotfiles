@@ -1,7 +1,7 @@
 function fish_prompt --description 'Write out the prompt'
     set -l normal (set_color normal)
 
-   if not set -q __fish_git_prompt_show_informative_status
+    if not set -q __fish_git_prompt_show_informative_status
         set -g __fish_git_prompt_show_informative_status 1
     end
     if not set -q __fish_git_prompt_hide_untrackedfiles
@@ -60,16 +60,16 @@ function fish_prompt --description 'Write out the prompt'
         set -g __fish_prompt_normal (set_color normal)
     end
 
-		# initialize our new variables
-		if not set -q __fancy_fish_prompt_initialized
-				set -qU fish_color_user
-				or set -U fish_color_user -o green
-				set -qU fish_color_host
-				or set -U fish_color_host -o cyan
-				set -qU fish_color_status
-				or set -U fish_color_status red
-				set -U __fancy_fish_prompt_initialized
-		end
+    # initialize our new variables
+    if not set -q __fancy_fish_prompt_initialized
+        set -qU fish_color_user
+        or set -U fish_color_user -o green
+        set -qU fish_color_host
+        or set -U fish_color_host -o cyan
+        set -qU fish_color_status
+        or set -U fish_color_status red
+        set -U __fancy_fish_prompt_initialized
+    end
 
     set -l color_cwd
     set -l prefix
