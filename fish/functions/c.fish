@@ -1,3 +1,3 @@
 function c
-    cd "$PROJECTS/$1"
+    cd "$PROJECTS/$argv[1]"
 end
