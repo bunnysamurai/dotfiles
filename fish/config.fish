@@ -1,6 +1,7 @@
 # pull in aliases and environment
 source $HOME/.config/fish/env.fish
 source $HOME/.config/fish/aliases.fish
+source $HOME/.config/fish/completions.fish
 
 # clear greeting
 set -g fish_greeting
