@@ -1,0 +1,1 @@
+aliases['bcdiff'] = ['diff', '--diff-cmd', "$DOTFILES/bin/svn_bc_diff_wrapper.sh"] # use beyond compare for diffs
