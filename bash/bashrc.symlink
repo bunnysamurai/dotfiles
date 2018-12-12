@@ -1,0 +1,15 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+  . /etc/bashrc
+fi
+
+# Execute fish if we're not invoked as bash -c
+if [ -z "$BASH_EXECUTION_STRING" ]; then;
+  exec fish
+fi
+
+
+
+
