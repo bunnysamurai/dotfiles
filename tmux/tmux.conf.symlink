@@ -17,7 +17,7 @@ bind-key C-a send-prefix
 setw -g aggressive-resize on
 
 # easy reload
-bind r source-file ~/.tmux.conf
+#bind r source-file ~/.tmux.conf
 
 # split panes using | and -
 bind | split-window -h
