@@ -4,9 +4,8 @@
 #
 set -e
 
-# use -iru to search directories ack usually ignores (like .git)
-if [ -x /usr/bin/ag ]; then
-    ag -i "$@"
+if [ -x /usr/bin/rg ]; then
+    rg -i "$@"
 else
     grep -ir "$@"
 fi

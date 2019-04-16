@@ -87,5 +87,5 @@ function fish_prompt --description 'Write out the prompt'
             set suffix '>'
     end
 
-       echo -e -n -s (set_color $fish_color_user) "$USER" $normal @ (set_color $fish_color_host) (prompt_hostname) $normal ' ' (set_color $color_cwd) (prompt_pwd) $normal (__fish_vcs_prompt) $normal "\n" $suffix " "
+    echo -e -n -s (set_color $fish_color_user) "$USER" $normal @ (set_color $fish_color_host) (prompt_hostname) $normal ' ' (set_color $color_cwd) (prompt_pwd) $normal (__fish_vcs_prompt) $normal "\n" $suffix " "
 end
