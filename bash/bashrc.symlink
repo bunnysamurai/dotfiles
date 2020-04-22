@@ -7,9 +7,9 @@ fi
 
 # Execute fish if we're not invoked as bash -c
 if [ -z "$BASH_EXECUTION_STRING" ] && [ -z "$NO_FISH" ]; then
-  exec fish
+  if hash fish 2>/dev/null; then
+    exec fish
+  else
+    echo "FYI: Fish not installed. Welcome to bash..."
+  fi
 fi
-
-
-
-
