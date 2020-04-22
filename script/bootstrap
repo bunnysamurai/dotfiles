@@ -148,7 +148,7 @@ install_fish () {
     dst="$HOME/.config/fish/$(basename $src)"
     link_file "$src" "$dst"
   done
-  
+
   link_file "$DOTFILES_ROOT/fish/functions" "$HOME/.config/fish/functions"
 }
 
