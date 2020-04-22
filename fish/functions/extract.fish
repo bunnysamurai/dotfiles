@@ -26,6 +26,14 @@ function extract --description "Expand or extract bundled & compressed files"
         else
           unxz $argv[1]
         end
+      case 7z
+        7z e $argv[1]
+      case zst
+        if test (echo $argv[1] | awk -F. '{print $(NF-1)}') = tar
+          tar -I zstd -xvf $argv[1]
+        else
+          unzstd $argv[1]
+        end
       case '*'
         echo "unknown/unsupported extension"
     end
