@@ -17,7 +17,7 @@
         uncommit = reset --mixed HEAD~
         ammend = commit --amend
         nevermind = !git reset --hard HEAD && git clean -d -f
-        cclean = clean -fdxe .vscode
+        cclean = clean -ffdxe .vscode
 [color]
         diff = auto
         status = auto
