@@ -23,10 +23,3 @@ function kp --description "Kill processes"
     kp
   end
 end
-
-# Key bindings
-# ------------
-
-function fish_user_key_bindings
-  fzf_key_bindings
-end
