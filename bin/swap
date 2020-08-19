@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -e
+
+if [ "$#" != "2" ]; then
+    echo "Usage: $0 <first> <second>"
+    echo "  Swap the two files"
+    exit 1
+fi
+
+tmploc=/tmp/"`basename $1`.tmp"
+
+mv -v "$1" $tmploc
+mv -v "$2" "$1"
+mv -v $tmploc "$2"
