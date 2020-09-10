@@ -10,6 +10,7 @@ function fish_right_prompt -d "Write out the right prompt"
     set prompt_status ' ' (set_color $fish_color_status) "[$last_status]" $normal
   end
 
-  echo -n -s "$prompt_status" "$prompt_time"
+
+  echo -n -s (fish_cmd_duration_prompt) "$prompt_status" "$prompt_time"
 end
 
