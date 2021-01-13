@@ -58,3 +58,5 @@
         trustExitCode = true
 [credential]
 	helper = cache
+[pull]
+	ff = only

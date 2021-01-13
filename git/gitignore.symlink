@@ -4,3 +4,6 @@
 
 .vscode/
 build/
+build_cmake/
+
+/gentex-cmake_dependencies/
