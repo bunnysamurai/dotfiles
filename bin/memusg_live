@@ -60,7 +60,7 @@ do
 #   printf "sample memusg: %.4f GiB (%d KiB)\n" $human_sample_bc $sample >&2
     let peak="sample > peak ? sample : peak"
     human_peak_bc=$(bc <<<"scale=6;$peak/1024/1024")
-#   printf "memusg: peak: %f GiB (%d KiB) sample: %f GiB (%d KiB)\n" $human_peak_bc $peak $human_sample_bc $sample >&2
+    printf "memusg: peak: %f GiB (%d KiB) sample: %f GiB (%d KiB)\n" $human_peak_bc $peak $human_sample_bc $sample >&2
     sleep 0.1
 done
 #echo "memusg: peak=$peak" >&2
