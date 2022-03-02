@@ -2,7 +2,8 @@
 *~
 *.swp
 
-.vscode/
+.cache/
+
 build/
 build_cmake/
 
