@@ -55,6 +55,6 @@
 [mergetool "bc3"]
         trustExitCode = true
 [credential]
-	helper = cache
+        helper = cache
 [pull]
-	ff = only
+        ff = only
