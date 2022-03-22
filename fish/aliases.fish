@@ -8,3 +8,6 @@ alias gc 'git commit'
 alias gac 'git add -A; and git commit'
 alias gsu 'git submodule update --remote --merge'
 alias bbash 'set -lx NO_FISH 1; and exec bash'
+
+# List so symbols
+alias sosym "nm --demangle --dynamic --defined-only --extern-only"
