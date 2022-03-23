@@ -3,6 +3,11 @@ source $HOME/.config/fish/env.fish
 source $HOME/.config/fish/aliases.fish
 source $HOME/.config/fish/completions.fish
 
+# initialize our new variables
+set -U fish_color_user -o green
+set -U fish_color_host -o cyan
+set -U fish_color_status red
+
 # clear greeting
 set -g fish_greeting
 

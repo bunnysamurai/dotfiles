@@ -1,75 +1,29 @@
 function fish_prompt --description 'Write out the prompt'
     set -l normal (set_color normal)
 
-    if not set -q __fish_git_prompt_show_informative_status
-        set -g __fish_git_prompt_show_informative_status 1
-    end
-    if not set -q __fish_git_prompt_hide_untrackedfiles
-        set -g __fish_git_prompt_hide_untrackedfiles 1
-    end
+    set -g __fish_git_prompt_show_informative_status true
+    set -g __fish_git_prompt_showdirtystate true
+    set -g __fish_git_prompt_showuntrackedfiles true
+    set -g __fish_git_prompt_showupstream "auto"
 
-    if not set -q __fish_git_prompt_color_branch
-        set -g __fish_git_prompt_color_branch magenta --bold
-    end
-    if not set -q __fish_git_prompt_showupstream
-        set -g __fish_git_prompt_showupstream "informative"
-    end
-    if not set -q __fish_git_prompt_char_upstream_ahead
-        set -g __fish_git_prompt_char_upstream_ahead "↑"
-    end
-    if not set -q __fish_git_prompt_char_upstream_behind
-        set -g __fish_git_prompt_char_upstream_behind "↓"
-    end
-    if not set -q __fish_git_prompt_char_upstream_prefix
-        set -g __fish_git_prompt_char_upstream_prefix ""
-    end
+    set -g __fish_git_prompt_color_branch magenta --bold
+    set -g __fish_git_prompt_char_upstream_ahead "↑"
+    set -g __fish_git_prompt_char_upstream_behind "↓"
+    set -g __fish_git_prompt_char_upstream_prefix ""
 
-    if not set -q __fish_git_prompt_char_stagedstate
-        set -g __fish_git_prompt_char_stagedstate "●"
-    end
-    if not set -q __fish_git_prompt_char_dirtystate
-        set -g __fish_git_prompt_char_dirtystate "✚"
-    end
-    if not set -q __fish_git_prompt_char_untrackedfiles
-        set -g __fish_git_prompt_char_untrackedfiles "…"
-    end
-    if not set -q __fish_git_prompt_char_invalidstate
-        set -g __fish_git_prompt_char_invalidstate "✖"
-    end
-    if not set -q __fish_git_prompt_char_cleanstate
-        set -g __fish_git_prompt_char_cleanstate "✔"
-    end
+    set -g __fish_git_prompt_char_stagedstate "●"
+    set -g __fish_git_prompt_char_dirtystate "✚"
+    set -g __fish_git_prompt_char_untrackedfiles "…"
+    set -g __fish_git_prompt_char_invalidstate "✖"
+    set -g __fish_git_prompt_char_cleanstate "✔"
 
-    if not set -q __fish_git_prompt_color_dirtystate
-        set -g __fish_git_prompt_color_dirtystate cyan --dim
-    end
-    if not set -q __fish_git_prompt_color_stagedstate
-        set -g __fish_git_prompt_color_stagedstate yellow
-    end
-    if not set -q __fish_git_prompt_color_invalidstate
-        set -g __fish_git_prompt_color_invalidstate red
-    end
-    if not set -q __fish_git_prompt_color_untrackedfiles
-        set -g __fish_git_prompt_color_untrackedfiles $fish_color_normal
-    end
-    if not set -q __fish_git_prompt_color_cleanstate
-        set -g __fish_git_prompt_color_cleanstate green --bold
-    end
-
-    if not set -q __fish_prompt_normal
-        set -g __fish_prompt_normal (set_color normal)
-    end
-
-    # initialize our new variables
-    if not set -q __fancy_fish_prompt_initialized
-        set -U fish_color_user -o green
-        set -U fish_color_host -o cyan
-        set -U fish_color_status red
-        set -U __fancy_fish_prompt_initialized
-    end
+    set -g __fish_git_prompt_color_dirtystate cyan --dim
+    set -g __fish_git_prompt_color_stagedstate yellow
+    set -g __fish_git_prompt_color_invalidstate red
+    set -g __fish_git_prompt_color_untrackedfiles $fish_color_normal
+    set -g __fish_git_prompt_color_cleanstate green --bold
 
     set -l color_cwd
-    set -l prefix
     set -l suffix
     switch "$USER"
         case root toor
@@ -84,5 +38,5 @@ function fish_prompt --description 'Write out the prompt'
             set suffix '$'
     end
 
-    echo -e -n -s (set_color $fish_color_user) "$USER" $normal @ (set_color $fish_color_host) (prompt_hostname) $normal ' ' (set_color $color_cwd) (prompt_pwd) $normal (__fish_vcs_prompt) $normal "\n" $suffix " "
+    echo -e -n -s (set_color $fish_color_user) "$USER" $normal @ (set_color $fish_color_host) (prompt_hostname) $normal ' ' (set_color $color_cwd) (prompt_pwd) $normal (fish_git_prompt) $normal "\n" $suffix " "
 end
