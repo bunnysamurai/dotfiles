@@ -1,9 +1,17 @@
 function fish_prompt --description 'Write out the prompt'
     set -l normal (set_color normal)
 
+    # note to self:
+    # if we have a big spicy repo that makes the git statuses take too long, we
+    # can set these _git_ variables to make fish not do git status on that
+    # particular repo -
+    # `git config --local bash.showinformativestatus false`
+    # `git config --lcoal bash.showdirtystate false`
+
     set -g __fish_git_prompt_show_informative_status true
     set -g __fish_git_prompt_showdirtystate true
     set -g __fish_git_prompt_showuntrackedfiles true
+    set -g __fish_git_prompt_hide_untrackedfiles true  # hide count of untracked files
     set -g __fish_git_prompt_showupstream "auto"
 
     set -g __fish_git_prompt_color_branch magenta --bold
@@ -38,5 +46,5 @@ function fish_prompt --description 'Write out the prompt'
             set suffix '$'
     end
 
-    echo -e -n -s (set_color $fish_color_user) "$USER" $normal @ (set_color $fish_color_host) (prompt_hostname) $normal ' ' (set_color $color_cwd) (prompt_pwd) $normal (fish_git_prompt) $normal "\n" $suffix " "
+    echo -e -n -s (set_color $fish_color_user) "$USER" $normal @ (set_color $fish_color_host) (prompt_hostname) $normal ' ' (set_color $color_cwd) (prompt_pwd) $normal (fish_vcs_prompt) $normal "\n" $suffix " "
 end
