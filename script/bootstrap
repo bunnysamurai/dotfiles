@@ -126,35 +126,43 @@ link_file () {
 }
 
 install_dotfiles () {
-  info 'installing dotfiles'
+  info 'installing dotfiles...'
 
   local overwrite_all=false backup_all=false skip_all=false
 
-  for src in $(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink' -not -path '*.git*' -not -path '*fish*')
+  for src in $(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink' -not -path '*.git*' -not -path '*.config')
   do
     dst="$HOME/.$(basename "${src%.*}")"
     link_file "$src" "$dst"
   done
 }
 
-install_fish () {
-  info 'installing fish stuff'
+install_configs () {
+  info 'installing XDG_CONFIG configs...'
 
+  conf_dir=${XDG_CONFIG_HOME:-$HOME/.config}
   local overwrite_all=false backup_all=false skip_all=false
 
-  mkdir -p $HOME/.config/fish
-  for src in $(find -H "$DOTFILES_ROOT/fish" -maxdepth 1 -name '*.fish')
+  for src in $(find -H "$DOTFILES_ROOT" -maxdepth 1 -name '*.config' -not -path '*.git*')
   do
-    dst="$HOME/.config/fish/$(basename $src)"
-    link_file "$src" "$dst"
-  done
+    conf_name="$(basename "${src%.*}")"
+    conf_folder="$conf_dir/$conf_name"
+    info "installing: $conf_folder"
+    # info "src is :$src"
+    mkdir -p $conf_folder
+    for subsrc in $(find -H "$src" -maxdepth 1 -mindepth 1 -not -path '*.git*')
+    do
+      dst="$conf_folder/$(basename $subsrc)"
+      # info "link $subsrc -> $dst"
+      link_file "$subsrc" "$dst"
 
-  link_file "$DOTFILES_ROOT/fish/functions" "$HOME/.config/fish/functions"
+    done
+  done
 }
 
 setup_gitconfig
 install_dotfiles
-install_fish
+install_configs
 
 echo ''
 echo '  All installed!'
