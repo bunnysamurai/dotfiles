@@ -1,19 +1,16 @@
 " Set up vundle
 set nocompatible
 filetype off
-set rtp+=$HOME/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin()
 " Install packages here
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'tpope/vim-sleuth'
-Plugin 'tpope/vim-fugitive'
-Plugin 'crusoexia/vim-monokai'
-Plugin 'dag/vim-fish'
+Plug 'scrooloose/nerdcommenter'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-fugitive'
+Plug 'crusoexia/vim-monokai'
+call plug#end()
 
-call vundle#end()
 filetype plugin indent on
 
 " set the leader to ',' where it belongs
@@ -91,8 +88,8 @@ set showcmd
 "airline
 let g:airline#extensions#whitespace#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#hunks#enabled = 0
-let g:airline_powerline_fonts = 0
+let g:airline#extensions#hunks#enabled = 1
+let g:airline_powerline_fonts = 1
 
 "Function for Hexedit mode
 command -bar Hexmode call ToggleHex()
