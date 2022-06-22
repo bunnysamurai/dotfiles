@@ -7,7 +7,7 @@
         co = checkout
         promote = !$DOTFILES/bin/git-promote
         wtf     = !$DOTFILES/bin/git-wtf
-        rank-contributors = !$ZSH/bin/git-rank-contributors
+        rank-contributors = !$DOTFILES/bin/git-rank-contributors
         count   = !git shortlog -sn
         branches = branch -a
         tags = tag

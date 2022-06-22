@@ -1,45 +1,42 @@
-" Set up vundle
+" Set up vim-plug
 set nocompatible
 filetype off
+
+function! Cond(cond, ...)
+    let opts = get(a:000, 0, {})
+    return a:cond ? opts : extend(opts, { 'on': [], 'for': [] })
+endfunction
+
 call plug#begin()
-" Install packages here
+" Global packages
 Plug 'scrooloose/nerdcommenter'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-fugitive'
-Plug 'crusoexia/vim-monokai'
+
+" Exclude these plugins from vscode
+Plug 'vim-airline/vim-airline', Cond(!exists('g:vscode'))
+Plug 'vim-airline/vim-airline-themes', Cond(!exists('g:vscode'))
+Plug 'tpope/vim-sleuth', Cond(!exists('g:vscode'))
+Plug 'tpope/vim-fugitive', Cond(!exists('g:vscode'))
+Plug 'crusoexia/vim-monokai', Cond(!exists('g:vscode'))
+Plug 'easymotion/vim-easymotion', Cond(!exists('g:vscode'))
+
+" VSCode only plugins
+Plug 'asvetliakov/vim-easymotion', Cond(exists('g:vscode'), { 'as': 'vsc-easymotion' })
+
 call plug#end()
 
 filetype plugin indent on
 
+""" GLOBAL SETTINGS
+
 " set the leader to ',' where it belongs
 let mapleader=","
 let maplocalleader="\\"
-
-"get some mouse action
-set mouse=a
 
 " cursor keys should linewrap
 set whichwrap+=<,>,h,l,[,]
 
 " backspace fixing
 set backspace=indent,eol,start
-
-" color crap
-syntax enable
-set background=dark
-colorscheme monokai
-
-"Smart Search
-nnoremap / /\v
-vnoremap / /\v
-set ignorecase
-set smartcase
-set incsearch
-set hlsearch
-" clear search buffer with leaderspace
-nnoremap <leader><space> :nohlsearch<CR>
 
 " fix tabs
 set smarttab
@@ -62,7 +59,7 @@ set hidden
 " backups are dumb
 set nobackup
 
-" put all the swap files in one spot
+" put all the swap files in one s
 set directory=$HOME/.vimswap//
 
 " Turn on automatic rereading of files
@@ -72,84 +69,135 @@ set autoread
 set visualbell
 set noerrorbells
 
-" stop hitting f1 holy crap
-inoremap <F1> <ESC>
-nnoremap <F1> <ESC>
-vnoremap <F1> <ESC>
+" easymotion config
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
 
-" Return to most recent line when reopening a file
-autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"zz" | endif
+map <Leader> <Plug>(easymotion-prefix)
 
-" show bottom bar
-set laststatus=2
-set ruler
-set showcmd
+" extend search
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
 
-"airline
-let g:airline#extensions#whitespace#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#hunks#enabled = 1
-let g:airline_powerline_fonts = 1
+ " clear search highlighting
+nnoremap <leader><space> :nohlsearch<CR>
 
-"Function for Hexedit mode
-command -bar Hexmode call ToggleHex()
-function ToggleHex()
-    if !exists("b:editHex") || !b:editHex
-        "Go to hex view
-        let b:editHex=1
-        %!xxd
-    else
-        "Go to text view
-        let b:editHex=0
-        %!xxd -r
-    endif
-endfunction
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+nmap s <Plug>(easymotion-overwin-f2)
 
-"The first time you press home got to the begining of the text
-"The second time go to the begining of the line
-function! SmartHome()
-  let s:col = col(".")
-  normal! ^
-  if s:col == col(".")
-    normal! 0
-  endif
-endfunction
-nnoremap <silent> <Home> :call SmartHome()<CR>
-inoremap <silent> <Home> <C-O>:call SmartHome()<CR>
+" Turn on case-insensitive feature
+let g:EasyMotion_smartcase = 1
 
-"F2 now toggles the show line numbers
-map <F2> :set invnumber<cr>a
-map! <F2> <Esc>:set invnumber<cr>
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
 
-"F4 removes ^M
-map <F4> :set fileformat=unix<cr>
-map! <F4> <Esc> :set fileformat=unix<cr>a
+let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
 
-"This will delete extra spaces at the end of a line and will
-"change tabs to spaces
-map <F6> :retab<cr>:%s/\s\+$//<cr>
-map! <F6> <Esc>:retab<cr>:%s/\s\+$//<cr>a
+if !exists('g:vscode')
+    " NON VSCODE SETTINGS
 
-"Enable Hexedit mode
-nnoremap <F8> :Hexmode<cr>
-inoremap <F8> <Esc>:Hexmode<cr>a
+    " color crap
+    syntax enable
+    set background=dark
+    colorscheme monokai
 
-"Buffer moving commands, but less typing
-" new buffer
-nmap <leader>T :enew<cr>
+    " get some mouse action
+    set mouse=a
 
-" move to next buffer
-nmap <leader>l :bnext<cr>
+    "airline
+    let g:airline#extensions#whitespace#enabled = 1
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#hunks#enabled = 1
+    let g:airline_powerline_fonts = 1
 
-" previous buffer
-nmap <leader>h :bprevious<cr>
+    "Function for Hexedit mode
+    command -bar Hexmode call ToggleHex()
+    function ToggleHex()
+        if !exists("b:editHex") || !b:editHex
+            "Go to hex view
+            let b:editHex=1
+            %!xxd
+        else
+            "Go to text view
+            let b:editHex=0
+            %!xxd -r
+        endif
+    endfunction
 
-"close buffer and move to previous
-nmap <leader>bq :bp <BAR> bd #<cr>
+    "The first time you press home got to the begining of the text
+    "The second time go to the begining of the line
+    function! SmartHome()
+      let s:col = col(".")
+      normal! ^
+      if s:col == col(".")
+        normal! 0
+      endif
+    endfunction
+    nnoremap <silent> <Home> :call SmartHome()<CR>
+    inoremap <silent> <Home> <C-O>:call SmartHome()<CR>
 
-" show all open buffers
-nmap <leader>bl :ls<cr>
+    "F2 now toggles the show line numbers
+    map <F2> :set invnumber<cr>a
+    map! <F2> <Esc>:set invnumber<cr>
 
-" Allow saving of root files when I forget to sudo vim
-cmap w!! w !sudo tee > /dev/null %
+    "F4 removes ^M
+    map <F4> :set fileformat=unix<cr>
+    map! <F4> <Esc> :set fileformat=unix<cr>a
 
+    "This will delete extra spaces at the end of a line and will
+    "change tabs to spaces
+    map <F6> :retab<cr>:%s/\s\+$//<cr>
+    map! <F6> <Esc>:retab<cr>:%s/\s\+$//<cr>a
+
+    "Enable Hexedit mode
+    nnoremap <F8> :Hexmode<cr>
+    inoremap <F8> <Esc>:Hexmode<cr>a
+
+    "Buffer moving commands, but less typing
+    " new buffer
+    nmap <leader>T :enew<cr>
+
+    " move to next buffer
+    nmap <leader>l :bnext<cr>
+
+    " previous buffer
+    nmap <leader>h :bprevious<cr>
+
+    "close buffer and move to previous
+    nmap <leader>bq :bp <BAR> bd #<cr>
+
+    " show all open buffers
+    nmap <leader>bl :ls<cr>
+
+    " Allow saving of root files when I forget to sudo vim
+    cmap w!! w !sudo tee > /dev/null %
+
+    " stop hitting f1 holy crap
+    inoremap <F1> <ESC>
+    nnoremap <F1> <ESC>
+    vnoremap <F1> <ESC>
+
+    " Return to most recent line when reopening a file
+    autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"zz" | endif
+
+    " show bottom bar
+    set laststatus=2
+    set ruler
+    set showcmd
+else
+    " VSCODE NEOVIM SETTINGS
+
+end
+
+" "Smart Search
+" nnoremap / /\v
+" vnoremap / /\v
+" set ignorecase
+" set smartcase
+" set incsearch
+" set hlsearch
+" " clear search buffer with leaderspace
+" nnoremap <leader><space> :nohlsearch<CR>

@@ -1,5 +1,5 @@
 # Dotfiles
-Forked from holman: https://github.com/holman/dotfiles/ 
+Forked from holman: https://github.com/holman/dotfiles/
 He has [opinions](http://zachholman.com/2010/08/dotfiles-are-meant-to-be-forked/).
 
 ## topical
@@ -8,13 +8,6 @@ Everything's built around topic areas. If you're adding a new area to your
 forked dotfiles — say, "Java" — you can simply add a `java` directory and put
 files in there. Anything with an extension of `.symlink` will get
 symlinked without extension into `$HOME` when you run `script/bootstrap`.
-
-## what's inside
-
-A lot of stuff. Seriously, a lot of stuff. Check them out in the file browser
-above and see what components may mesh up with you.
-[Fork it](https://github.com/holman/dotfiles/fork), remove what you don't
-use, and build on what you do use.
 
 ## components
 
@@ -26,6 +19,11 @@ There's a few special files in the hierarchy.
   your `$HOME`. This is so you can keep all of those versioned in your dotfiles
   but still keep those autoloaded files in your home directory. These get
   symlinked in when you run `script/bootstrap`.
+- **topic.config**: Any topic folder that ends in `.config` will be created in
+  `$XDG_CONFIG_HOME` and have its contents symlinked in. (The whole folder
+  isn't symlinked, because the first thing that used this was `fish`, which
+  puts files in that directory that I didn't want to explicitly ignore nor
+  include in this repo.)
 
 ## install
 
@@ -39,5 +37,3 @@ script/bootstrap
 
 This will symlink the appropriate files in `.dotfiles` to your home directory.
 Everything is configured and tweaked within `~/.dotfiles`.
-
-
