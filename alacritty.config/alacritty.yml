@@ -153,35 +153,34 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
 
-# Colors (Ayu Dark)
+# Colors (Monokai Dark)
 colors:
   # Default colors
   primary:
-    background: '#0A0E14'
-    foreground: '#B3B1AD'
+    background: '#272822'
+    foreground: '#F8F8F2'
 
   # Normal colors
   normal:
-    black: '#01060E'
-    red: '#EA6C73'
-    green: '#91B362'
-    yellow: '#F9AF4F'
-    blue: '#53BDFA'
-    magenta: '#FAE994'
-    cyan: '#90E1C6'
-    white: '#C7C7C7'
+    black:   '#272822'
+    red:     '#F92672'
+    green:   '#A6E22E'
+    yellow:  '#F4BF75'
+    blue:    '#66D9EF'
+    magenta: '#AE81FF'
+    cyan:    '#A1EFE4'
+    white:   '#F8F8F2'
 
   # Bright colors
   bright:
-    black: '#686868'
-    red: '#F07178'
-    green: '#C2D94C'
-    yellow: '#FFB454'
-    blue: '#59C2FF'
-    magenta: '#FFEE99'
-    cyan: '#95E6CB'
-    white: '#FFFFFF'
-
+    black:   '#75715E'
+    red:     '#F92672'
+    green:   '#A6E22E'
+    yellow:  '#F4BF75'
+    blue:    '#66D9EF'
+    magenta: '#AE81FF'
+    cyan:    '#A1EFE4'
+    white:   '#F9F8F5'
 # Bell
 #
 # The bell is rung every time the BEL control character is received.
