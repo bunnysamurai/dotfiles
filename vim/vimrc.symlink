@@ -10,6 +10,7 @@ endfunction
 call plug#begin()
 " Global packages
 Plug 'scrooloose/nerdcommenter'
+Plug 'haya14busa/is.vim'
 
 " Exclude these plugins from vscode
 Plug 'vim-airline/vim-airline', Cond(!exists('g:vscode'))
@@ -27,6 +28,8 @@ call plug#end()
 filetype plugin indent on
 
 """ GLOBAL SETTINGS
+
+set encoding=utf-8
 
 " set the leader to ',' where it belongs
 let mapleader=","
@@ -59,8 +62,8 @@ set hidden
 " backups are dumb
 set nobackup
 
-" put all the swap files in one s
-set directory=$HOME/.vimswap//
+" swap is dumb
+set noswapfile
 
 " Turn on automatic rereading of files
 set autoread
@@ -69,23 +72,21 @@ set autoread
 set visualbell
 set noerrorbells
 
+"Smart Search
+nnoremap / /\v
+vnoremap / /\v
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+
 " easymotion config
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 
 map <Leader> <Plug>(easymotion-prefix)
 
-" extend search
-map  / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
-map  n <Plug>(easymotion-next)
-map  N <Plug>(easymotion-prev)
-
  " clear search highlighting
-nnoremap <leader><space> :nohlsearch<CR>
-
-" `s{char}{char}{label}`
-" Need one more keystroke, but on average, it may be more comfortable.
-nmap s <Plug>(easymotion-overwin-f2)
+"nnoremap <leader><space> :nohlsearch<CR> " not needed with is.vim plugin
 
 " Turn on case-insensitive feature
 let g:EasyMotion_smartcase = 1
@@ -93,8 +94,26 @@ let g:EasyMotion_smartcase = 1
 " JK motions: Line motions
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
-
 let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
+
+"The first time you press home got to the begining of the text
+"The second time go to the begining of the line
+function! SmartHome()
+    let s:col = col(".")
+    normal! ^
+    if s:col == col(".")
+        normal! 0
+    endif
+endfunction
+
+nnoremap <silent> <Home> :call SmartHome()<CR>
+inoremap <silent> <Home> <C-O>:call SmartHome()<CR>
+
+" Tab complete on commands
+set wildmenu
+set wildmode=longest:full,full
+
+set showcmd
 
 if !exists('g:vscode')
     " NON VSCODE SETTINGS
@@ -107,11 +126,69 @@ if !exists('g:vscode')
     " get some mouse action
     set mouse=a
 
+
+    " EASYMOTION SETUP, vscode incompatible stuff
+    nmap <Leader>L <Plug>(easymotion-overwin-line)
+    " `s{char}{char}{label}`
+    " Need one more keystroke, but on average, it may be more comfortable.
+    nmap s <Plug>(easymotion-overwin-f2)
+
     "airline
+    "let g:airline_extensions = []
     let g:airline#extensions#whitespace#enabled = 1
     let g:airline#extensions#tabline#enabled = 1
-    let g:airline#extensions#hunks#enabled = 1
+    let g:airline#extensions#tabline#left_sep = ' '
+    let g:airline#extensions#tabline#left_alt_sep = '|'
     let g:airline_powerline_fonts = 1
+
+    if !exists('g:airline_symbols')
+        let g:airline_symbols = {}
+    endif
+
+    " unicode symbols
+    let g:airline_left_sep = '»'
+    let g:airline_left_sep = '▶'
+    let g:airline_right_sep = '«'
+    let g:airline_right_sep = '◀'
+    let g:airline_symbols.colnr = ' ㏇:'
+    let g:airline_symbols.colnr = ' ℅:'
+    let g:airline_symbols.crypt = '🔒'
+    let g:airline_symbols.linenr = '☰'
+    let g:airline_symbols.linenr = ' ␊:'
+    let g:airline_symbols.linenr = ' ␤:'
+    let g:airline_symbols.linenr = '¶'
+    let g:airline_symbols.maxlinenr = ''
+    "let g:airline_symbols.maxlinenr = '㏑'
+    let g:airline_symbols.branch = '⎇'
+    let g:airline_symbols.paste = 'ρ'
+    let g:airline_symbols.paste = 'Þ'
+    let g:airline_symbols.paste = '∥'
+    let g:airline_symbols.spell = 'Ꞩ'
+    let g:airline_symbols.notexists = 'Ɇ'
+    let g:airline_symbols.whitespace = 'Ξ'
+
+    " powerline symbols
+    let g:airline_left_sep = ''
+    let g:airline_left_alt_sep = ''
+    let g:airline_right_sep = ''
+    let g:airline_right_alt_sep = ''
+    let g:airline_symbols.branch = ''
+    "let g:airline_symbols.colnr = ' :'
+    let g:airline_symbols.crypt = '🔒'
+    let g:airline_symbols.readonly = ''
+    let g:airline_symbols.linenr = ' :'
+    "let g:airline_symbols.maxlinenr = '☰ '
+    let g:airline_symbols.dirty='⚡'
+
+    "F2 now toggles the show line numbers and they are on by default
+    set number
+    map <F2> :set invnumber<cr>a
+    map! <F2> <Esc>:set invnumber<cr>
+
+    "This will delete extra spaces at the end of a line and will
+    "change tabs to spaces
+    map <F6> :retab<cr>:%s/\s\+$//<cr>
+    map! <F6> <Esc>:retab<cr>:%s/\s\+$//<cr>a
 
     "Function for Hexedit mode
     command -bar Hexmode call ToggleHex()
@@ -126,32 +203,6 @@ if !exists('g:vscode')
             %!xxd -r
         endif
     endfunction
-
-    "The first time you press home got to the begining of the text
-    "The second time go to the begining of the line
-    function! SmartHome()
-      let s:col = col(".")
-      normal! ^
-      if s:col == col(".")
-        normal! 0
-      endif
-    endfunction
-    nnoremap <silent> <Home> :call SmartHome()<CR>
-    inoremap <silent> <Home> <C-O>:call SmartHome()<CR>
-
-    "F2 now toggles the show line numbers
-    map <F2> :set invnumber<cr>a
-    map! <F2> <Esc>:set invnumber<cr>
-
-    "F4 removes ^M
-    map <F4> :set fileformat=unix<cr>
-    map! <F4> <Esc> :set fileformat=unix<cr>a
-
-    "This will delete extra spaces at the end of a line and will
-    "change tabs to spaces
-    map <F6> :retab<cr>:%s/\s\+$//<cr>
-    map! <F6> <Esc>:retab<cr>:%s/\s\+$//<cr>a
-
     "Enable Hexedit mode
     nnoremap <F8> :Hexmode<cr>
     inoremap <F8> <Esc>:Hexmode<cr>a
@@ -183,21 +234,11 @@ if !exists('g:vscode')
     " Return to most recent line when reopening a file
     autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"zz" | endif
 
-    " show bottom bar
-    set laststatus=2
-    set ruler
-    set showcmd
 else
     " VSCODE NEOVIM SETTINGS
+    set laststatus=2
 
+    " `s{char}{char}{label}`
+    " Need one more keystroke, but on average, it may be more comfortable.
+    nmap s <Plug>(easymotion-f2)
 end
-
-" "Smart Search
-" nnoremap / /\v
-" vnoremap / /\v
-" set ignorecase
-" set smartcase
-" set incsearch
-" set hlsearch
-" " clear search buffer with leaderspace
-" nnoremap <leader><space> :nohlsearch<CR>

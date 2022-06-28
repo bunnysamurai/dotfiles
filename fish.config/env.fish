@@ -1,6 +1,6 @@
 # Editor stuff
-set -gx EDITOR 'vim'
-set -gx VISUAL 'vim'
+set -gx EDITOR 'nvim'
+set -gx VISUAL 'nvim'
 set -gx XEDITOR 'code'
 
 # default browser
