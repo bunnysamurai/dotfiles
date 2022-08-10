@@ -3,6 +3,10 @@ source $HOME/.config/fish/env.fish
 source $HOME/.config/fish/aliases.fish
 source $HOME/.config/fish/completions.fish
 
+if test -e $HOME/.config/fish/local.fish
+  source $HOME/.config/fish/local.fish
+end
+
 # initialize our new variables
 set -U fish_color_user -o green
 set -U fish_color_host -o cyan
