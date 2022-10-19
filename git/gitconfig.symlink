@@ -4,6 +4,7 @@
 [hub]
         protocol = ssh
 [alias]
+        s = status -sb
         co = checkout
         promote = !$DOTFILES/bin/git-promote
         wtf     = !$DOTFILES/bin/git-wtf
@@ -25,7 +26,7 @@
         ui = true
 [core]
         excludesfile = ~/.gitignore
-        editor = vim
+        editor = nvim
         autocrlf = input
 [apply]
         whitespace = nowarn

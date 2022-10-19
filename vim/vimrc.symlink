@@ -223,9 +223,6 @@ if !exists('g:vscode')
     " show all open buffers
     nmap <leader>bl :ls<cr>
 
-    " Allow saving of root files when I forget to sudo vim
-    cmap w!! w !sudo tee > /dev/null %
-
     " stop hitting f1 holy crap
     inoremap <F1> <ESC>
     nnoremap <F1> <ESC>
