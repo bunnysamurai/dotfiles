@@ -11,3 +11,7 @@ alias bbash 'set -lx NO_FISH 1; and exec bash'
 
 # List so symbols
 alias sosym "nm --demangle --dynamic --defined-only --extern-only"
+
+# tree stuff
+alias dtree "fd -td | tree --fromfile . --noreport -n"  # show non gitignored directories as a tree
+alias ftree "fd | tree --fromfile . --noreport -n"      # tree, but filtered through fd's default filters

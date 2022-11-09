@@ -18,7 +18,7 @@ local config = {
     automatically_reload_config = true,
     term = term_cfg,
     font = font_cfg,
-    font_size = 13,
+    font_size = 12,
     launch_menu = { {
         args = { "btop" }
     } },
