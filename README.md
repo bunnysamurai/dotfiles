@@ -1,6 +1,8 @@
 # Dotfiles
 Forked from amauragis: https://github.com/amauragis/dotfiles/
+
 Which, of course, was forked from holman: https://github.com/holman/dotfiles/
+
 He has [opinions](http://zachholman.com/2010/08/dotfiles-are-meant-to-be-forked/).
 
 ## topical
