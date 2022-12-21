@@ -12,6 +12,10 @@ forked dotfiles — say, "Java" — you can simply add a `java` directory and pu
 files in there. Anything with an extension of `.symlink` will get
 symlinked without extension into `$HOME` when you run `script/bootstrap`.
 
+You can also just manually symlink things into their appropriate $HOME 
+configuration control directory.  In case you don't want to pull **everything**
+in.
+
 ## components
 
 There's a few special files in the hierarchy.

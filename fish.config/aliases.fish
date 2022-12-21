@@ -18,3 +18,9 @@ alias sosym "nm --demangle --dynamic --defined-only --extern-only"
 # tree stuff
 alias dtree "fd -td | tree --fromfile . --noreport -n"  # show non gitignored directories as a tree
 alias ftree "fd | tree --fromfile . --noreport -n"      # tree, but filtered through fd's default filters
+
+# fedora stuff
+alias dnfup "sudo dnf upgrade --refresh"
+
+# gdb (oh yes) stuff
+alias ngdb "set EDITOR nvim && gdb"
