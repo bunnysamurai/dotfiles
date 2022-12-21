@@ -4,7 +4,7 @@ set -gx VISUAL 'nvim'
 set -gx XEDITOR 'code'
 
 # default browser
-set -gx BROWSER google-chrome
+set -gx BROWSER firefox
 
 set -gx TERMINAL wezterm
 
