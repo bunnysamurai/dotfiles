@@ -1,5 +1,6 @@
 # Dotfiles
-Forked from holman: https://github.com/holman/dotfiles/
+Forked from amauragis: https://github.com/amauragis/dotfiles/
+Which, of course, was forked from holman: https://github.com/holman/dotfiles/
 He has [opinions](http://zachholman.com/2010/08/dotfiles-are-meant-to-be-forked/).
 
 ## topical
@@ -30,7 +31,7 @@ There's a few special files in the hierarchy.
 Run this:
 
 ```sh
-git clone https://github.com/amauragis/dotfiles.git ~/.dotfiles
+git clone https://github.com/bunnysamurai/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 script/bootstrap
 ```
