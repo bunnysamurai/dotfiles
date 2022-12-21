@@ -7,6 +7,9 @@ alias gp 'git push origin HEAD'
 alias gc 'git commit'
 alias gac 'git add -A; and git commit'
 alias gsu 'git submodule update --remote --merge'
+alias gls 'git remote get-url origin'
+
+# run in bash
 alias bbash 'set -lx NO_FISH 1; and exec bash'
 
 # List so symbols
