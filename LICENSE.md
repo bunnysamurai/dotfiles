@@ -2,6 +2,7 @@ The MIT License
 
 Copyright (c) Zach Holman 2016, http://zachholman.com
 Copyright (c) Andy Mauragis 2020
+Copyright (c) Ben Pohlman 2022
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
