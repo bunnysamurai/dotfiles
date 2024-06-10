@@ -29,3 +29,6 @@ if type -q fzf
 end
 
 set -g fish_cmd_duration_threshold 500
+
+[ -s "$HOME/.rvm/scripts/rvm" ] && $HOME/.rvm/scripts/rvm
+rvm default
